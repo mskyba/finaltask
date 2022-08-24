@@ -1,26 +1,19 @@
 package tests.ui;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import main.RozetkaUi;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import main.ui.RozetkaUi;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.time.Duration;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
-import static main.BasePage.driver;
 
 public class BaseUiTest extends BaseTest {
     @BeforeMethod
@@ -40,6 +33,7 @@ public class BaseUiTest extends BaseTest {
                     capabilities
             );
             WebDriverRunner.setWebDriver(driver);
+            Configuration.timeout = 50000;
             open(baseUrl);
         } else {
             open(baseUrl);
@@ -54,8 +48,10 @@ public class BaseUiTest extends BaseTest {
                 .setValue(searchPhrase);
         $x("//button[contains(text(),'Знайти')]")
                 .click();
-        $x("//span[contains(text(),'Мобільний телефон Apple iPhone 13 Pro 128 GB Graphite')]")
+        $x("//span[contains(text(),'Мобільний телефон Apple iPhone 13 Pro 512 GB Gold')]")
                 .click();
+        $x("//button[contains(text(),'Купити')]")
+                .isDisplayed();
 
 
     }

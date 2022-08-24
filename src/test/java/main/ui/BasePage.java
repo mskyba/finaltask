@@ -1,4 +1,4 @@
-package main;
+package main.ui;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;

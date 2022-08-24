@@ -1,7 +1,6 @@
-package main;
+package main.ui;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
+import main.ui.BasePage;
 
 public class RozetkaUi extends BasePage {
     public RozetkaUi() {
