@@ -11,7 +11,7 @@ import java.util.List;
 public  class SearchResultDto {
 
     @JsonProperty("resultCount")
-    public int resultCount;
+    public int count;
 
     private List<ResultDto> results;
 
