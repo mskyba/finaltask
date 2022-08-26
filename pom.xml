@@ -35,10 +35,10 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
-                    <suiteXmlFiles>
-                        <!--            <suiteXmlFile>src/test/resources/suites/SelenideClasses.xml</suiteXmlFile>-->
-                        <suiteXmlFile>src/test/resources/suites/SelenideMethods.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+<!--                    <suiteXmlFiles>-->
+<!--                        &lt;!&ndash;            <suiteXmlFile>src/test/resources/suites/SelenideClasses.xml</suiteXmlFile>&ndash;&gt;-->
+<!--                        <suiteXmlFile>src/test/resources/suites/SelenideMethods.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
                 </configuration>
             </plugin>
         </plugins>

@@ -42,13 +42,13 @@ public class BaseUiTest extends BaseTest {
 
     @Test(priority = 1)
     public void openingItemCart() {
-        String searchPhrase = "iphone 13 pro";
+        String searchPhrase = "AirPods Pro with MagSafe Charging Case 2021 (MLWK3TY/A)";
         RozetkaUi rozetkaPage = new RozetkaUi();
         $x("//input")
                 .setValue(searchPhrase);
         $x("//button[contains(text(),'Знайти')]")
                 .click();
-        $x("//span[contains(text(),'Мобільний телефон Apple iPhone 13 Pro 512 GB Gold')]")
+        $x("//span[contains(text(),'Навушники AirPods Pro with MagSafe Charging')]")
                 .click();
         $x("//button[contains(text(),'Купити')]")
                 .isDisplayed();
