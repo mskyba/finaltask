@@ -20,7 +20,7 @@ public class BaseApiTest {
         JsonPath jsonPath = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .baseUri("https://itunes.apple.com")
-                .params(Map.of("term", "Nirvana",
+                .params(Map.of("term", "Ariana Grande",
                         "country", "US",
                         "media", "audiobook"))
                 .get("/search")
