@@ -1,8 +1,11 @@
 package tests.ui;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import main.configreader.PropertiesReader;
 import main.ui.RozetkaUi;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeMethod;
@@ -18,9 +21,9 @@ import static com.codeborne.selenide.Selenide.*;
 public class BaseUiTest extends BaseTest {
     @BeforeMethod
     public void baseUiSetup() throws MalformedURLException {
-        boolean isRemote = Boolean.parseBoolean(System.getProperty("remote"));//need to read from properties
-        String baseUrl = "https://rozetka.com.ua/";//need to read from properties
-        if (isRemote == true) {
+        PropertiesReader frameworkProperties = ConfigFactory.create(PropertiesReader.class);
+        if (frameworkProperties.isRemote() == true) {
+
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");
             capabilities.setCapability("browserVersion", "103.0");
@@ -33,10 +36,9 @@ public class BaseUiTest extends BaseTest {
                     capabilities
             );
             WebDriverRunner.setWebDriver(driver);
-            Configuration.timeout = 50000;
-            open(baseUrl);
+            Selenide.open(frameworkProperties.baseURL());
         } else {
-            open(baseUrl);
+            Selenide.open(frameworkProperties.baseURL());
         }
     }
 
@@ -57,7 +59,7 @@ public class BaseUiTest extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void logginIn() {
+    public void checkingLogginIn() {
         $("buy-button button button--with-icon button--green button--medium ng-star-inserted")
                 .isDisplayed();
         $x("//button[@class=\"header__button ng-star-inserted\"]")
