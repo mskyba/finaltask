@@ -10,19 +10,25 @@ import main.dto.SearchResultDto;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static io.restassured.RestAssured.put;
+
 public class BaseApiTest {
+
 
     @Test
     public void getResultsTest() throws JsonProcessingException {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("term", "Ariana Grande");
+        map.put("country", "US");
+        map.put("media", "audiobook");
         JsonPath jsonPath = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .baseUri("https://itunes.apple.com")
-                .params(Map.of("term", "Ariana Grande",
-                        "country", "US",
-                        "media", "audiobook"))
+                .params(map)
                 .get("/search")
                 .then()
                 .statusCode(200)
@@ -38,11 +44,13 @@ public class BaseApiTest {
 
     @Test
     public void jjMusicVideos() throws JsonProcessingException {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("term", "Jack Johnson");
+        map.put("entity", "musicVideo");
         JsonPath jsonPath = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .baseUri("https://itunes.apple.com")
-                .params(Map.of("term", "Jack Johnson",
-                        "entity", "musicVideo"))
+                .params(map)
                 .get("/search")
                 .then()
                 .statusCode(200)
@@ -59,12 +67,14 @@ public class BaseApiTest {
 
     @Test
     public void iTunesCanadaSoftwareResponse() throws JsonProcessingException {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("term", "yelp");
+        map.put("country", "CA");
+        map.put("entity", "software");
         JsonPath jsonPath = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .baseUri("https://itunes.apple.com")
-                .params(Map.of("term", "yelp",
-                        "country", "CA",
-                        "entity", "software"))
+                .params(map)
                 .get("/search")
                 .then()
                 .statusCode(200)
@@ -81,12 +91,14 @@ public class BaseApiTest {
 
     @Test
     public void checkingItemsCounter() throws JsonProcessingException {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("term", "Ariana Grande");
+        map.put("country", "US");
+        map.put("entity", "software");
         JsonPath jsonPath = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .baseUri("https://itunes.apple.com")
-                .params(Map.of("term", "Nirvana",
-                        "country", "US",
-                        "media", "audiobook"))
+                .params(map)
                 .get("/search")
                 .then()
                 .statusCode(200)

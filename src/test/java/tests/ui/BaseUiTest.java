@@ -1,6 +1,5 @@
 package tests.ui;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import main.configreader.PropertiesReader;
@@ -10,27 +9,27 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.BaseTest;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class BaseUiTest extends BaseTest {
+public class BaseUiTest {
     @BeforeMethod
     public void baseUiSetup() throws MalformedURLException {
+        Map<String, Boolean> map = new HashMap<String, Boolean>();
+        map.put("enableVNC", true);
+        map.put("enableVideo", true);
         PropertiesReader frameworkProperties = ConfigFactory.create(PropertiesReader.class);
         if (frameworkProperties.isRemote() == true) {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");
             capabilities.setCapability("browserVersion", "103.0");
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
+            capabilities.setCapability("selenoid:options", map);
             RemoteWebDriver driver = new RemoteWebDriver(
                     URI.create("http://localhost:4444/wd/hub").toURL(),
                     capabilities
